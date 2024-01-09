@@ -1,0 +1,50 @@
+# GitHub Action that runs pytest
+
+name: Run Pytest
+on:
+  push:
+#  schedule:
+#    # execute once a week on monday
+#    - cron:  '0 1 * * 1'
+
+env:
+  CUDA_VISIBLE_DEVICES: "-1"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12-dev"]
+
+    steps:
+      - uses: actions/checkout@v4
+        with: # https://github.com/stefanzweifel/git-auto-commit-action#checkout-the-correct-branch
+          ref: ${{ github.head_ref }}
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: 'x64'
+      - run: |
+          pip install .
+          pip install pytest
+          pip install pytest-cov
+      - name: Run tests
+        run: |
+          pytest --disable-warnings --exitfirst --verbose --failed-first --cov=dyspyosis tests/ --cov-report=term-missing --cov-report=xml
+      - name: Generate Coverage Badge
+        run: |
+          pip install setuptools
+          pip install genbadge[coverage]         
+          genbadge coverage -i coverage.xml -o docs/coverage-badge.svg
+      - run: git diff --exit-code ./docs/coverage-badge.svg
+      - name: Update Coverage Badge if needed
+        if: failure()
+        run:
+          git config --global user.name coverage_badge_update
+          git config --global user.email '${GITHUB_ACTOR}@users.noreply.github.com'
+          git add docs/coverage-badge.svg
+          git commit -m "Auto updating coverage badge"
+          git push
