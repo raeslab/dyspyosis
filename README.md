@@ -2,7 +2,7 @@
 
 Python package that can be used to compute dysbiosis scores.
 
-![A gumpy black snake, minimalist illustration](./docs/img/dyspyosis_logo.jpg){width=200px}
+![A gumpy black snake, minimalist illustration](./docs/img/dyspyosis_logo_small.jpg)
 
 ## Installation
 
