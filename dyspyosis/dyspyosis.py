@@ -37,7 +37,7 @@ class Dyspyosis:
         labels: Optional[list] = None,
         rarefication_depth: int = 5000,
         rarefication_count: int = 10,
-        seed: int = 0
+        seed: int = 0,
     ):
         """
         Initializes the Dyspyosis class with data, optional labels, and rarefication parameters.
@@ -64,16 +64,26 @@ class Dyspyosis:
         self.x_test = None
         self.x_train = None
 
-        self.scaled_data = scale_data(rarefy(data, rarefication_depth, seed=seed), self.rarefication_depth)
-        self.autoencoder, self.encoder, self.decoder = create_autoencoder(self.data.shape[1])
+        self.scaled_data = scale_data(
+            rarefy(data, rarefication_depth, seed=seed), self.rarefication_depth
+        )
+        self.autoencoder, self.encoder, self.decoder = create_autoencoder(
+            self.data.shape[1]
+        )
 
-        full_data = scale_data(build_dataset(self.data,
-                                             self.rarefication_depth,
-                                             self.rarefication_count,
-                                             seed=self.seed+1),
-                               self.rarefication_depth)
+        full_data = scale_data(
+            build_dataset(
+                self.data,
+                self.rarefication_depth,
+                self.rarefication_count,
+                seed=self.seed + 1,
+            ),
+            self.rarefication_depth,
+        )
 
-        self.x_train, self.x_test = train_test_split(full_data, test_size=0.15, random_state=self.seed)
+        self.x_train, self.x_test = train_test_split(
+            full_data, test_size=0.15, random_state=self.seed
+        )
 
     def run_training(self, epochs: int = 4000, batch_size: int = 64) -> None:
         """
@@ -86,11 +96,14 @@ class Dyspyosis:
         batch_size : int
             The batch size used during training.
         """
-        self.autoencoder.fit(self.x_train, self.x_train,
-                             epochs=epochs,
-                             batch_size=batch_size,
-                             shuffle=True,
-                             validation_data=(self.x_test, self.x_test))
+        self.autoencoder.fit(
+            self.x_train,
+            self.x_train,
+            epochs=epochs,
+            batch_size=batch_size,
+            shuffle=True,
+            validation_data=(self.x_test, self.x_test),
+        )
 
     def compute_loss(self) -> pd.DataFrame:
         """
@@ -104,8 +117,8 @@ class Dyspyosis:
         loss = get_loss(self.autoencoder, self.scaled_data)
 
         if self.labels is not None:
-            output = pd.DataFrame({'label': self.labels, 'loss': loss})
+            output = pd.DataFrame({"label": self.labels, "loss": loss})
         else:
-            output = pd.DataFrame({'loss': loss})
+            output = pd.DataFrame({"loss": loss})
 
         return output

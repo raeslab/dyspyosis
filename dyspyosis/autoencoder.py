@@ -30,14 +30,17 @@ def create_autoencoder(input_shape, encoding_dim=4, regularization_value=10e-5):
     """
     # Setup Layers
     input_data = Input(shape=(input_shape,))
-    encoded = Dense(encoding_dim, activation='relu',
-                    activity_regularizer=regularizers.l1(regularization_value))(input_data)
+    encoded = Dense(
+        encoding_dim,
+        activation="relu",
+        activity_regularizer=regularizers.l1(regularization_value),
+    )(input_data)
 
-    decoded = Dense(input_shape, activation='softmax')(encoded)
+    decoded = Dense(input_shape, activation="softmax")(encoded)
 
     # Create Autoencoder
     autoencoder = Model(input_data, decoded)
-    autoencoder.compile(optimizer='adadelta', loss='mean_squared_error')
+    autoencoder.compile(optimizer="adadelta", loss="mean_squared_error")
 
     # Create Encoder
     encoder = Model(input_data, encoded)

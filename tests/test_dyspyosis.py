@@ -30,11 +30,21 @@ def dyspyosis_labelless_instance(mock_data):
 
 def test_initialization(dyspyosis_instance):
     """Test whether the Dyspyosis class initializes correctly with the given data."""
-    assert dyspyosis_instance.data is not None, "Data should not be None after initialization."
-    assert dyspyosis_instance.labels is not None, "Labels should not be None after initialization."
-    assert dyspyosis_instance.autoencoder is not None, "Autoencoder should be created upon initialization."
-    assert dyspyosis_instance.encoder is not None, "Encoder should be created upon initialization."
-    assert dyspyosis_instance.decoder is not None, "Decoder should be created upon initialization."
+    assert (
+        dyspyosis_instance.data is not None
+    ), "Data should not be None after initialization."
+    assert (
+        dyspyosis_instance.labels is not None
+    ), "Labels should not be None after initialization."
+    assert (
+        dyspyosis_instance.autoencoder is not None
+    ), "Autoencoder should be created upon initialization."
+    assert (
+        dyspyosis_instance.encoder is not None
+    ), "Encoder should be created upon initialization."
+    assert (
+        dyspyosis_instance.decoder is not None
+    ), "Decoder should be created upon initialization."
 
 
 def test_training(monkeypatch, dyspyosis_instance):
@@ -51,16 +61,24 @@ def test_compute_loss(monkeypatch, dyspyosis_instance):
     """Test the loss computation of the autoencoder."""
     loss_output = dyspyosis_instance.compute_loss()
 
-    assert isinstance(loss_output, pd.DataFrame), "compute_loss should return a pandas DataFrame."
+    assert isinstance(
+        loss_output, pd.DataFrame
+    ), "compute_loss should return a pandas DataFrame."
     assert loss_output.shape == (100, 2), "DataFrame should be correct"
-    assert 'loss' in loss_output.columns, "DataFrame should contain a 'loss' column."
-    assert 'label' in loss_output.columns, "DataFrame should contain a 'label' column if labels are provided."
+    assert "loss" in loss_output.columns, "DataFrame should contain a 'loss' column."
+    assert (
+        "label" in loss_output.columns
+    ), "DataFrame should contain a 'label' column if labels are provided."
 
     # Remove labels to check output in the absense of lables
     dyspyosis_instance.labels = None
     loss_output = dyspyosis_instance.compute_loss()
 
-    assert isinstance(loss_output, pd.DataFrame), "compute_loss should return a pandas DataFrame."
+    assert isinstance(
+        loss_output, pd.DataFrame
+    ), "compute_loss should return a pandas DataFrame."
     assert loss_output.shape == (100, 1), "DataFrame should be correct"
-    assert 'loss' in loss_output.columns, "DataFrame should contain a 'loss' column."
-    assert 'label' not in loss_output.columns, "DataFrame shouldn't contain a 'label' column if labels aren't provided."
+    assert "loss" in loss_output.columns, "DataFrame should contain a 'loss' column."
+    assert (
+        "label" not in loss_output.columns
+    ), "DataFrame shouldn't contain a 'label' column if labels aren't provided."

@@ -26,11 +26,13 @@ def rarefy(data, rarefication_depth=None, seed=0):
     if rarefication_depth is None:
         rarefication_depth = np.min(noccur)
     elif rarefication_depth > np.min(noccur):
-        print(f"Warning: Specified rarefication_depth ({rarefication_depth}) is larger than the minimum number of occurrences ({np.min(noccur)}).")
+        print(
+            f"Warning: Specified rarefication_depth ({rarefication_depth}) is larger than the minimum number of occurrences ({np.min(noccur)})."
+        )
 
     output = np.empty((data.shape[0], nvar))
-    for i in np.arange(data.shape[0]): # for each sample
-        p = data[i] / float(noccur[i]) # relative frequency / probability
+    for i in np.arange(data.shape[0]):  # for each sample
+        p = data[i] / float(noccur[i])  # relative frequency / probability
         choice = prng.choice(nvar, rarefication_depth, p=p)
         output[i] = np.bincount(choice, minlength=nvar)
 
@@ -83,6 +85,7 @@ def build_dataset(data, rarefication_depth, iterations=10, seed=0):
     output : numpy.ndarray
         A 2D array of shape (n_samples * iterations, n_features) containing the rarefied data.
     """
-    rarefied_sets = [rarefy(data, rarefication_depth, seed=seed + i) for i in range(iterations)]
+    rarefied_sets = [
+        rarefy(data, rarefication_depth, seed=seed + i) for i in range(iterations)
+    ]
     return np.concatenate(rarefied_sets, axis=0)
-

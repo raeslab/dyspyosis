@@ -13,7 +13,9 @@ def test_autoencoder_creation():
     encoding_dim = 4
     regularization_value = 1e-5
 
-    autoencoder, encoder, decoder = create_autoencoder(input_shape, encoding_dim, regularization_value)
+    autoencoder, encoder, decoder = create_autoencoder(
+        input_shape, encoding_dim, regularization_value
+    )
 
     # Test if the autoencoder, encoder and decoder models are created correctly
     assert autoencoder is not None, "Autoencoder model should not be None"
@@ -21,10 +23,22 @@ def test_autoencoder_creation():
     assert decoder is not None, "Decoder model should not be None"
 
     # Check model input and output shapes
-    assert autoencoder.input_shape == (None, input_shape), "Autoencoder input shape is incorrect"
-    assert autoencoder.output_shape == (None, input_shape), "Autoencoder output shape is incorrect"
-    assert encoder.output_shape == (None, encoding_dim), "Encoder output shape is incorrect"
-    assert decoder.input_shape == (None, encoding_dim), "Decoder input shape is incorrect"
+    assert autoencoder.input_shape == (
+        None,
+        input_shape,
+    ), "Autoencoder input shape is incorrect"
+    assert autoencoder.output_shape == (
+        None,
+        input_shape,
+    ), "Autoencoder output shape is incorrect"
+    assert encoder.output_shape == (
+        None,
+        encoding_dim,
+    ), "Encoder output shape is incorrect"
+    assert decoder.input_shape == (
+        None,
+        encoding_dim,
+    ), "Decoder input shape is incorrect"
 
     # Check if the models have been compiled
     assert autoencoder.optimizer is not None, "Autoencoder has not been compiled"
