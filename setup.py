@@ -20,7 +20,7 @@ setuptools.setup(
         "pandas>=2.1.4",
         "scikit-learn>=1.3.2",
         "tensorflow==2.10.1",
-        "keras==2.10.0"
+        "keras==2.10.0",
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
