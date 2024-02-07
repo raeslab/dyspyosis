@@ -47,7 +47,7 @@ nodes in the subsequent layer.
 
 The network has been implemented in Python using the [Keras] library.
 
-### Configuration
+### Configuration and Recommended Settings
 
 The number of nodes in the hidden layer is a key parameter that can be adjusted based on the complexity of the input 
 data and the desired granularity of the dysbiosis quantification. A larger number of nodes allows the network to 
@@ -61,8 +61,6 @@ gut microbiome (at genus level) better performance is obtained with six or eight
 To enrich the input data, it is rarefied multiple times using different seeds to create unique, slightly different 
 version of the input for training. It is recommended to set the ```rarefication_count``` so that the total sample 
 count, multiplied by the rarefication_count exceeds 10k. Training typically needs to run for 2000 - 4000 epochs.
-
-## Recommendations
 
 [Anna Karenina principle]: https://en.wikipedia.org/wiki/Anna_Karenina_principle
 [autoencoder]: https://en.wikipedia.org/wiki/Autoencoder
