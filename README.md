@@ -2,7 +2,8 @@
 
 # Dyspyosis
 
-Python package that can be used to compute dysbiosis scores.
+Python package that can be used to compute dysbiosis scores. The package leverages autoencoders based
+anomaly detection. Further details on this method are available [here](./docs/method.md).
 
 ![A gumpy black snake, minimalist illustration](./docs/img/dyspyosis_logo_small.jpg)
 
@@ -40,6 +41,19 @@ if __name__ == "__main__":
     loss = dyspyosis.compute_loss()
     loss.to_csv("./data/loss_out.tsv", sep=",", index=None)
 ```
+
+## Benchmarks
+
+There are two benchmark scripts included in the repository: ```benchmark_cpu.py``` and ```benchmark_gpu.py```. When
+running the CPU benchmark it is important to set two environmental variables before running the code, ```CUDA_VISIBLE_DEVICES``` needs to be "-1"
+and ```CUDA_DEVICE_ORDER``` needs to be "PCI_BUS_ID". This ensures that the CPU benchmark actually runs on the CPU in case a GPU is available.
+
+Here are some results running dyspyosis on hardware we have access too.
+
+| Type |                    Hardware | Epochs | Time (s) |
+|-----:|----------------------------:|-------:|---------:|
+|  CPU |      Intel i5-7500 @ 3.4Ghz |    100 | 185.0017 |
+|  GPU | NVIDIA GeForce GTX 1060 6GB |    100 | 691.4091 |
 
 ## For developers
 
