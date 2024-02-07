@@ -1,4 +1,4 @@
-[![Run Pytest](https://github.com/raeslab/dyspyosis/actions/workflows/autopytest.yml/badge.svg)](https://github.com/raeslab/dyspyosis/actions/workflows/autopytest.yml)[![Coverage](https://raw.githubusercontent.com/raeslab/dyspyosis/main/docs/coverage-badge.svg)](https://raw.githubusercontent.com/raeslab/dyspyosis/main/docs/coverage-badge.svg)[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Run Pytest](https://github.com/raeslab/dyspyosis/actions/workflows/autopytest.yml/badge.svg)](https://github.com/raeslab/dyspyosis/actions/workflows/autopytest.yml) [![Coverage](https://raw.githubusercontent.com/raeslab/dyspyosis/main/docs/coverage-badge.svg)](https://raw.githubusercontent.com/raeslab/dyspyosis/main/docs/coverage-badge.svg) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 # Dyspyosis
 
@@ -12,7 +12,7 @@ anomaly detection. Further details on this method are available [here](./docs/me
 Make sure you have [CUDA Toolkit 11.2] and the matching [cuDNN (8.1.1)] installed on your system (required for Tensorflow).
 
 ```commandline
-pip install <TODO>
+pip install dyspyosis
 ```
 
 ## Usage
@@ -77,3 +77,15 @@ pytest tests/ --disable-warnings --cov=dyspyosis --cov-report=term-missing --cov
 
 [CUDA Toolkit 11.2]: https://developer.nvidia.com/cuda-11.2.0-download-archive
 [cuDNN (8.1.1)]: https://developer.nvidia.com/rdp/cudnn-archive
+
+## Contributing
+
+Any contributions you make are **greatly appreciated**.
+
+  * Found a bug or have some suggestions? Open an [issue](https://github.com/raeslab/dyspyosis/issues).
+  * Pull requests are welcome! Though open an [issue](https://github.com/raeslab/dyspyosis/issues) first to discuss which features/changes you wish to implement.
+
+## Contact and License
+
+dyspyosis was developed by [Sebastian Proost](https://sebastian.proost.science/) at the [RaesLab](https://raeslab.sites.vib.be/en) (part of [VIB](https://vib.be/en#/) and [KULeuven](https://www.kuleuven.be/english/kuleuven/index.html)). dyspyosis is available under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International]((https://creativecommons.org/licenses/by-nc-sa/4.0/)) license.
+

@@ -24,7 +24,7 @@ setuptools.setup(
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
+        "License :: Other/Proprietary License :: CC BY-NC-SA 4.0 International",
         "Operating System :: OS Independent",
     ],
     packages=setuptools.find_packages(where="dyspyosis"),
