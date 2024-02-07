@@ -22,6 +22,9 @@ have been set to complete the script quickly. For real data you'll want to incre
 number of times samples will be rarefied) to a large number (the number of samples x rarefication_count should be > 10k) 
 and increase the number of ```epochs``` to 4000.
 
+**Note**: Depending on your system, you might need to set an environmental variable ```CUDA_VISIBLE_DEVICES``` to "0" before
+loading dyspyosis to use the GPU. Try this in case CUDA is installed, but you get an error that no CUDA device was found.
+
 ```python
 import pandas as pd
 from dyspyosis import Dyspyosis
@@ -50,10 +53,12 @@ and ```CUDA_DEVICE_ORDER``` needs to be "PCI_BUS_ID". This ensures that the CPU 
 
 Here are some results running dyspyosis on hardware we have access too.
 
-| Type |                    Hardware | Epochs | Time (s) |
-|-----:|----------------------------:|-------:|---------:|
-|  CPU |      Intel i5-7500 @ 3.4Ghz |    100 | 185.0017 |
-|  GPU | NVIDIA GeForce GTX 1060 6GB |    100 | 691.4091 |
+| Type |                     Hardware | Epochs |       Time (s) |
+|-----:|-----------------------------:|-------:|---------------:|
+|  CPU |       Intel i5-7500 @ 3.4Ghz |    100 |       185.0017 |
+|  CPU |            AMD Ryzen 7 3700X |    100 |       115.1882 |
+|  GPU |  NVIDIA GeForce GTX 1060 6GB |    100 |       691.4091 |
+|  GPU | NVIDIA GeForce RTX 4080 16GB |    100 |       340.6128 |
 
 ## For developers
 
@@ -75,9 +80,6 @@ suppressed by ```--disable-warnings```.
 pytest tests/ --disable-warnings --cov=dyspyosis --cov-report=term-missing --cov-report=xml
 ```
 
-[CUDA Toolkit 11.2]: https://developer.nvidia.com/cuda-11.2.0-download-archive
-[cuDNN (8.1.1)]: https://developer.nvidia.com/rdp/cudnn-archive
-
 ## Contributing
 
 Any contributions you make are **greatly appreciated**.
@@ -90,3 +92,6 @@ Any contributions you make are **greatly appreciated**.
 dyspyosis was developed by [Sebastian Proost](https://sebastian.proost.science/) at the [RaesLab](https://raeslab.sites.vib.be/en) (part of [VIB](https://vib.be/en#/) and [KULeuven](https://www.kuleuven.be/english/kuleuven/index.html)). dyspyosis is available under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/) license.
 
 For commercial access inquiries, please contact [Jeroen Raes](mailto:jeroen.raes@kuleuven.vib.be).
+
+[CUDA Toolkit 11.2]: https://developer.nvidia.com/cuda-11.2.0-download-archive
+[cuDNN (8.1.1)]: https://developer.nvidia.com/rdp/cudnn-archive
