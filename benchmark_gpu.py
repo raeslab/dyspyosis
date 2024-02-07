@@ -29,10 +29,7 @@ if __name__ == "__main__":
 
     stop = time.perf_counter()
 
-    gpu_time = stop-start
+    gpu_time = stop - start
 
     print("==================\n\n")
     print(f"Processed {GPU_EPOCHS} epochs on GPU in {gpu_time:0.4f} seconds.")
-
-
-

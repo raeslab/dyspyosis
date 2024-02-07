@@ -7,6 +7,7 @@ CPU_EPOCHS = 100
 
 def run_cpu(df):
     from dyspyosis import Dyspyosis
+
     dyspyosis_cpu = Dyspyosis(
         df.values,
         labels=df.index.tolist(),
@@ -21,9 +22,13 @@ def run_cpu(df):
 
 if __name__ == "__main__":
     if not os.environ["CUDA_VISIBLE_DEVICES"] == "-1":
-        print(f"ERROR: CUDA_VISIBLE_DEVICES should be set to -1 before starting this script!")
+        print(
+            f"ERROR: CUDA_VISIBLE_DEVICES should be set to -1 before starting this script!"
+        )
     if not os.environ["CUDA_DEVICE_ORDER"] == "PCI_BUS_ID":
-        print(f"ERROR: CUDA_DEVICE_ORDER should be set to PCI_BUS_ID before starting this script!")
+        print(
+            f"ERROR: CUDA_DEVICE_ORDER should be set to PCI_BUS_ID before starting this script!"
+        )
 
     df = pd.read_table("./data/test.tsv", index_col=0)
 
@@ -35,10 +40,7 @@ if __name__ == "__main__":
 
     stop = time.perf_counter()
 
-    cpu_time = stop-start
+    cpu_time = stop - start
 
     print("==================\n\n")
     print(f"Processed {CPU_EPOCHS} epochs on CPU in {cpu_time:0.4f} seconds.")
-
-
-
