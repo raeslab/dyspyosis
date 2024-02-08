@@ -5,7 +5,7 @@
 Python package that can be used to compute dysbiosis scores. The package leverages autoencoders based
 anomaly detection. Further details on this method are available [here](./docs/method.md).
 
-![A gumpy black snake, minimalist illustration](./docs/img/dyspyosis_logo_small.jpg)
+![A gumpy black snake, minimalist illustration](https://raw.githubusercontent.com/raeslab/dyspyosis/main/docs/img/dyspyosis_logo_small.jpg)
 
 ## Installation
 
@@ -24,6 +24,11 @@ and increase the number of ```epochs``` to 4000.
 
 **Note**: Depending on your system, you might need to set an environmental variable ```CUDA_VISIBLE_DEVICES``` to "0" before
 loading dyspyosis to use the GPU. Try this in case CUDA is installed, but you get an error that no CUDA device was found.
+
+**Note**: The neural network dyspyosis is based on is relatively small, depending on the complexity of your dataset and 
+size of the latent space, running dyspyosis on CPU might outperform the GPU (see benchmarks)! To do so, set 
+```CUDA_VISIBLE_DEVICES``` to "-1" and ```CUDA_DEVICE_ORDER``` to "PCI_BUS_ID" in your environment before launching 
+dyspyosis.
 
 ```python
 import pandas as pd
@@ -63,7 +68,9 @@ Here are some results running dyspyosis on hardware we have access too.
 ## For developers
 
 Clone the repository, create a virtual environment and install all requirements first. Additionally, ensure you have
-[CUDA Toolkit 11.2] and the matching [cuDNN (8.1.1)] installed on your system (required for Tensorflow).
+the CUDA toolkit v11.x and matching cuDNN installed, these are required for Tensorflow. Which version you need 
+depends on your hardware, e.g. for a GTX 10XX you'll need [CUDA Toolkit 11.2] and the matching [cuDNN (8.1.1)], for
+more recent cards you can get more recent versions.
 
 ```commandline
 git clone https://github.com/raeslab/dyspyosis
