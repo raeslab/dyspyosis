@@ -9,7 +9,12 @@ anomaly detection. Further details on this method are available [here](./docs/me
 
 ## Installation
 
-Make sure you have [CUDA Toolkit 11.2] and the matching [cuDNN (8.1.1)] installed on your system (required for Tensorflow).
+Before installing dyspyosis, ensure you have the CUDA toolkit v11.x and matching cuDNN installed, these are required for Tensorflow. Which version you need 
+depends on your hardware, e.g. for a GTX 10XX you'll need [CUDA Toolkit 11.2] and the matching [cuDNN (8.1.1)], for
+more recent cards you can get more recent versions.
+
+
+Next, install dyspyosis using the command below.
 
 ```commandline
 pip install dyspyosis
@@ -56,7 +61,7 @@ There are two benchmark scripts included in the repository: ```benchmark_cpu.py`
 running the CPU benchmark it is important to set two environmental variables before running the code, ```CUDA_VISIBLE_DEVICES``` needs to be "-1"
 and ```CUDA_DEVICE_ORDER``` needs to be "PCI_BUS_ID". This ensures that the CPU benchmark actually runs on the CPU in case a GPU is available.
 
-Here are some results running dyspyosis on hardware we have access too.
+Here are some results running dyspyosis on hardware we have access to.
 
 | Type |                     Hardware | Epochs |       Time (s) |
 |-----:|-----------------------------:|-------:|---------------:|
