@@ -57,6 +57,9 @@ Here are some results running dyspyosis on hardware we have access too.
 
 ## For developers
 
+To create the same environment the main devs are using, use [requirements.txt](./docs/dev/requirements.txt) to install
+the exact versions off all packages.
+
 Clone the repository, create a virtual environment and install all requirements first. Additionally, ensure you have
 [CUDA Toolkit 11.2] and the matching [cuDNN (8.1.1)] installed on your system (required for Tensorflow).
 

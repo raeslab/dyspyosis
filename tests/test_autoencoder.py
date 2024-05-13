@@ -2,7 +2,6 @@ import numpy as np
 from unittest.mock import MagicMock
 from keras import backend as K
 from keras import models
-from keras.losses import MeanSquaredError
 
 # Assuming create_autoencoder was defined in a module called autoencoder_module
 from dyspyosis.autoencoder import create_autoencoder, get_loss
