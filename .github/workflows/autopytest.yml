@@ -33,7 +33,7 @@ jobs:
           pip install pytest-cov
       - name: Run tests
         run: |
-          pytest --disable-warnings --exitfirst --verbose --failed-first --cov=dyspyosis tests/ --cov-report=term-missing --cov-report=xml
+          pytest --disable-warnings --exitfirst --verbose --failed-first --cov=src tests/ --cov-report=term-missing --cov-report=xml
       - name: Generate Coverage Badge
         run: |
           pip install setuptools
