@@ -15,3 +15,6 @@ if __name__ == "__main__":
 
     loss = dyspyosis.compute_loss()
     loss.to_csv("./data/loss_out.tsv", sep=",", index=None)
+
+    latent = dyspyosis.get_latent()
+    latent.to_csv("./data/latent_out.tsv", sep=",", index=None)

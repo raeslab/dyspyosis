@@ -1,5 +1,3 @@
-import tensorflow as tf
-
 from keras.layers import Input, Dense
 from keras.models import Model
 from keras import regularizers
@@ -51,6 +49,12 @@ def create_autoencoder(input_shape, encoding_dim=4, regularization_value=10e-5):
     decoder = Model(encoded_input, decoder_layer(encoded_input))
 
     return autoencoder, encoder, decoder
+
+
+def get_latent(encoder, data):
+    latent = encoder.predict(data)
+
+    return latent
 
 
 def get_loss(autoencoder, data):

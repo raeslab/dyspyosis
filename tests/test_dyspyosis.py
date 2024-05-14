@@ -70,7 +70,7 @@ def test_compute_loss(monkeypatch, dyspyosis_instance):
         "label" in loss_output.columns
     ), "DataFrame should contain a 'label' column if labels are provided."
 
-    # Remove labels to check output in the absense of lables
+    # Remove labels to check output in the absense of labels
     dyspyosis_instance.labels = None
     loss_output = dyspyosis_instance.compute_loss()
 
@@ -82,3 +82,32 @@ def test_compute_loss(monkeypatch, dyspyosis_instance):
     assert (
         "label" not in loss_output.columns
     ), "DataFrame shouldn't contain a 'label' column if labels aren't provided."
+
+
+def test_get_latent(monkeypatch, dyspyosis_instance):
+    latent = dyspyosis_instance.get_latent()
+
+    assert isinstance(
+        latent, pd.DataFrame
+    ), "get_latent should return a pandas DataFrame."
+    assert latent.shape == (
+        100,
+        dyspyosis_instance.encode_dim + 1,
+    ), "output should be the the number of samples by latent space + labels"
+    assert (
+        "label" in latent.columns
+    ), "DataFrame should contain a 'label' column if labels are provided."
+
+    # Remove labels to check output in the absense of labels
+    dyspyosis_instance.labels = None
+    latent = dyspyosis_instance.get_latent()
+    assert isinstance(
+        latent, pd.DataFrame
+    ), "get_latent should return a pandas DataFrame."
+    assert latent.shape == (
+        100,
+        dyspyosis_instance.encode_dim,
+    ), "output should be the the number of samples by latent space"
+    assert (
+        "label" not in latent.columns
+    ), "DataFrame should not contain a 'label' column if no labels are provided."
