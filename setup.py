@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="dyspyosis",
-    version="0.0.2",
+    version="0.1.0",
     author="Sebastian Proost",
     author_email="sebastian.proost@gmail.com",
     description="Calculate dysbiosis scores using Python",

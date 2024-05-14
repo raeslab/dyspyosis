@@ -3,7 +3,7 @@
 # Dyspyosis
 
 Python package that can be used to compute dysbiosis scores. The package leverages autoencoders based
-anomaly detection. Further details on this method are available [here](./docs/method.md).
+anomaly detection. Further details on this method are available [here](https://github.com/raeslab/dyspyosis/blob/main/docs/method.md).
 
 ![A gumpy black snake, minimalist illustration](https://raw.githubusercontent.com/raeslab/dyspyosis/main/docs/img/dyspyosis_logo_small.jpg)
 
@@ -27,6 +27,9 @@ have been set to complete the script quickly. For real data you'll want to incre
 number of times samples will be rarefied) to a large number (the number of samples x rarefication_count should be > 10k) 
 and increase the number of ```epochs``` to 4000.
 
+The ```encode_dim``` is the size of the latent space and has been found to work best when set between 4 and 8 depending
+on the number of genera in the input data, lower encoder_dim values working better with fewer genera. 
+
 **Note**: Depending on your system, you might need to set an environmental variable ```CUDA_VISIBLE_DEVICES``` to "0" before
 loading dyspyosis to use the GPU. Try this in case CUDA is installed, but you get an error that no CUDA device was found.
 
@@ -47,6 +50,7 @@ if __name__ == "__main__":
         labels=df.index.tolist(),
         rarefication_depth=5000,
         rarefication_count=10,
+        encode_dim=4
     )
 
     dyspyosis.run_training(epochs=5)
@@ -72,7 +76,7 @@ Here are some results running dyspyosis on hardware we have access to.
 
 ## For developers
 
-To create the same environment the main devs are using, use [requirements.txt](./docs/dev/requirements.txt) to install
+To create the same environment the main devs are using, use [requirements.txt](https://github.com/raeslab/dyspyosis/blob/main/docs/dev/requirements.txt) to install
 the exact versions off all packages.
 
 Clone the repository, create a virtual environment and install all requirements first. Additionally, ensure you have
@@ -92,7 +96,7 @@ To run tests, use the command below. There are a number of Deprecation Warnings 
 suppressed by ```--disable-warnings```.
 
 ```commandline
-pytest tests/ --disable-warnings --cov=dyspyosis --cov-report=term-missing --cov-report=xml
+pytest tests/ --disable-warnings --cov=src --cov-report=term-missing --cov-report=xml
 ```
 
 ## Contributing
