@@ -13,7 +13,6 @@ Before installing dyspyosis, ensure you have the CUDA toolkit v11.x and matching
 depends on your hardware, e.g. for a GTX 10XX you'll need [CUDA Toolkit 11.2] and the matching [cuDNN (8.1.1)], for
 more recent cards you can get more recent versions.
 
-
 Next, install dyspyosis using the command below.
 
 ```commandline

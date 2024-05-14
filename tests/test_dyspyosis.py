@@ -97,3 +97,17 @@ def test_get_latent(monkeypatch, dyspyosis_instance):
     assert (
         "label" in latent.columns
     ), "DataFrame should contain a 'label' column if labels are provided."
+
+    # Remove labels to check output in the absense of labels
+    dyspyosis_instance.labels = None
+    latent = dyspyosis_instance.get_latent()
+    assert isinstance(
+        latent, pd.DataFrame
+    ), "get_latent should return a pandas DataFrame."
+    assert latent.shape == (
+        100,
+        dyspyosis_instance.encode_dim,
+    ), "output should be the the number of samples by latent space"
+    assert (
+            "label" not in latent.columns
+    ), "DataFrame should not contain a 'label' column if no labels are provided."
