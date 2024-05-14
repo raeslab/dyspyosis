@@ -3,7 +3,7 @@ import pandas as pd
 from typing import Optional
 
 from .utils import build_dataset, rarefy, scale_data
-from .autoencoder import create_autoencoder, get_loss
+from .autoencoder import create_autoencoder, get_loss, get_latent
 
 
 class Dyspyosis:
@@ -37,6 +37,7 @@ class Dyspyosis:
         labels: Optional[list] = None,
         rarefication_depth: int = 5000,
         rarefication_count: int = 10,
+        encode_dim: int = 4,
         seed: int = 0,
     ):
         """
@@ -52,6 +53,8 @@ class Dyspyosis:
             Number of reads to rarefy to.
         rarefication_count : int
             The number of times to rarefy the data to generate training data
+        encode_dim: int
+            Number of dimensions the latent space should have
         seed : int
             The random state seed for reproducibility purposes.
         """
@@ -59,6 +62,7 @@ class Dyspyosis:
         self.labels = labels
         self.rarefication_depth = rarefication_depth
         self.rarefication_count = rarefication_count
+        self.encode_dim = encode_dim
         self.seed = seed
 
         self.x_test = None
@@ -68,7 +72,7 @@ class Dyspyosis:
             rarefy(data, rarefication_depth, seed=seed), self.rarefication_depth
         )
         self.autoencoder, self.encoder, self.decoder = create_autoencoder(
-            self.data.shape[1]
+            self.data.shape[1], encoding_dim=self.encode_dim
         )
 
         full_data = scale_data(
@@ -120,5 +124,24 @@ class Dyspyosis:
             output = pd.DataFrame({"label": self.labels, "loss": loss})
         else:
             output = pd.DataFrame({"loss": loss})
+
+        return output
+
+    def get_latent(self) -> pd.DataFrame:
+        """
+        Retrieves the latent representations (encoded features) of the scaled data using the encoder part of the autoencoder model.
+
+        Returns:
+        --------
+        latent : pd.DataFrame
+            A DataFrame containing the latent representations of the scaled data.
+        """
+        latent = get_latent(self.encoder, self.scaled_data)
+
+        num_columns = latent.shape[1]
+        output = pd.DataFrame(latent, columns=[f"L{i+1}" for i in range(num_columns)])
+
+        if self.labels is not None and len(self.labels) == output.shape[0]:
+            output["label"] = self.labels
 
         return output
