@@ -109,5 +109,5 @@ def test_get_latent(monkeypatch, dyspyosis_instance):
         dyspyosis_instance.encode_dim,
     ), "output should be the the number of samples by latent space"
     assert (
-            "label" not in latent.columns
+        "label" not in latent.columns
     ), "DataFrame should not contain a 'label' column if no labels are provided."
