@@ -29,6 +29,9 @@ and increase the number of ```epochs``` to 4000.
 The ```encode_dim``` is the size of the latent space and has been found to work best when set between 4 and 8 depending
 on the number of genera in the input data, lower encoder_dim values working better with fewer genera. 
 
+The loss, the main metric for dysbiosis, can be computed using ```compute_loss()```, while the laten space can be
+accessed using ```get_latent```. See the example below.
+
 **Note**: Depending on your system, you might need to set an environmental variable ```CUDA_VISIBLE_DEVICES``` to "0" before
 loading dyspyosis to use the GPU. Try this in case CUDA is installed, but you get an error that no CUDA device was found.
 
@@ -56,6 +59,9 @@ if __name__ == "__main__":
 
     loss = dyspyosis.compute_loss()
     loss.to_csv("./data/loss_out.tsv", sep=",", index=None)
+
+    latent = dyspyosis.get_latent()
+    latent.to_csv("./data/latent_out.tsv", sep=",", index=None)
 ```
 
 ## Benchmarks
