@@ -94,7 +94,7 @@ git clone https://github.com/raeslab/dyspyosis
 cd dyspyosis
 python -m venv venv
 source venv/activate
-pip install -r requirements.txt
+pip install -r docs/dev/requirements.txt
 ```
 
 To run tests, use the command below. There are a number of Deprecation Warnings (due to tensorflow) that can be
