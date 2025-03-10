@@ -16,7 +16,7 @@ setup(
         "Bug Tracker": "https://github.com/raeslab/dyspyosis/issues",
     },
     install_requires=[
-        "numpy>=1.26.3",
+        "numpy>=1.26.3, <2.0.0",
         "pandas>=2.1.4",
         "scikit-learn>=1.3.2",
         "tensorflow==2.10.1",
