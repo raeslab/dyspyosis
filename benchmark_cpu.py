@@ -1,5 +1,4 @@
 import pandas as pd
-import os
 import time
 
 CPU_EPOCHS = 100
@@ -21,14 +20,14 @@ def run_cpu(df):
 
 
 if __name__ == "__main__":
-    if not os.environ["CUDA_VISIBLE_DEVICES"] == "-1":
-        print(
-            f"ERROR: CUDA_VISIBLE_DEVICES should be set to -1 before starting this script!"
-        )
-    if not os.environ["CUDA_DEVICE_ORDER"] == "PCI_BUS_ID":
-        print(
-            f"ERROR: CUDA_DEVICE_ORDER should be set to PCI_BUS_ID before starting this script!"
-        )
+    # if not os.environ["CUDA_VISIBLE_DEVICES"] == "-1":
+    #     print(
+    #         "ERROR: CUDA_VISIBLE_DEVICES should be set to -1 before starting this script!"
+    #     )
+    # if not os.environ["CUDA_DEVICE_ORDER"] == "PCI_BUS_ID":
+    #     print(
+    #         "ERROR: CUDA_DEVICE_ORDER should be set to PCI_BUS_ID before starting this script!"
+    #     )
 
     df = pd.read_table("./data/test.tsv", index_col=0)
 

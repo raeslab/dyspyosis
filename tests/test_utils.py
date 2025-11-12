@@ -31,9 +31,9 @@ def test_scale_data():
     scaled_data = scale_data(data, rarefication_depth)
 
     # Validate the scaled data against the expected results
-    assert np.array_equal(
-        scaled_data, expected_scaled_data
-    ), "Incorrect scaling of data"
+    assert np.array_equal(scaled_data, expected_scaled_data), (
+        "Incorrect scaling of data"
+    )
 
 
 def test_build_dataset():

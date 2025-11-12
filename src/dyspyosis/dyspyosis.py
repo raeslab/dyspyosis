@@ -139,7 +139,7 @@ class Dyspyosis:
         latent = get_latent(self.encoder, self.scaled_data)
 
         num_columns = latent.shape[1]
-        output = pd.DataFrame(latent, columns=[f"L{i+1}" for i in range(num_columns)])
+        output = pd.DataFrame(latent, columns=[f"L{i + 1}" for i in range(num_columns)])
 
         if self.labels is not None and len(self.labels) == output.shape[0]:
             output["label"] = self.labels
