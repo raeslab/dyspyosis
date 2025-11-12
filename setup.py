@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="dyspyosis",
-    version="0.1.0",
+    version="1.0.0",
     author="Sebastian Proost",
     author_email="sebastian.proost@gmail.com",
     description="Calculate dysbiosis scores using Python",
@@ -16,14 +16,16 @@ setup(
         "Bug Tracker": "https://github.com/raeslab/dyspyosis/issues",
     },
     install_requires=[
-        "numpy>=1.26.3, <2.0.0",
-        "pandas>=2.1.4",
-        "scikit-learn>=1.3.2",
-        "tensorflow==2.10.1",
-        "keras==2.10.0",
+        "numpy>=2.0.0",
+        "pandas>=2.2.0",
+        "scikit-learn>=1.5.0",
+        "tensorflow>=2.16.0",
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
         "Operating System :: OS Independent",
     ],
     license="Creative Commons Attribution-NonCommercial-ShareAlike 4.0. https://creativecommons.org/licenses/by-nc-sa/4.0/",
